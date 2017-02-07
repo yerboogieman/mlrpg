@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+			 xmlns="http://java.sun.com/xml/ns/persistence"
+			 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+			 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<!-- TODO: replace name="mlrpg" with name="${parent.artifactId}" -->
+	<persistence-unit name="mlrpg" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<!-- Only used when transaction-type=JTA -->
+		<!-- TODO: replace "jdbc/mlrpg" with "jdbc/${parent.artifactId}" -->
+		<jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/client/mlrpg)</jta-data-source>
+
+		<!-- Only used when transaction-type=RESOURCE_LOCAL -->
+		<!-- TODO: replace "jdbc/mlrpg" with "jdbc/${parent.artifactId}" -->
+		<non-jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/client/mlrpg)</non-jta-data-source>
+
+		<!-- TODO: dynamically list customation model classes with #foreach($values_from_properties_file) -->
+		<class>com.custsoft.model.AccessToken</class>
+		<class>com.custsoft.model.Model</class>
+		<class>com.custsoft.model.Role</class>
+		<class>com.custsoft.model.stats.Stat</class>
+		<class>com.custsoft.model.stats.StatDefinition</class>
+		<class>com.custsoft.model.User</class>
+		<class>com.dollarquest.model.game.Friend</class>
+
+		<properties>
+			<!-- TODO: replace "org.hibernate.dialect.MySQLDialect" with property that defaults to mysql (current value) -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="validate"/>
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

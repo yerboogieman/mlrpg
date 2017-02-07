@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+		   xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.4.0"
+		   xmlns:enc="http://karaf.apache.org/xmlns/jasypt/v1.0.0">
+
+	<ext:property-placeholder>
+		<ext:default-properties>
+			<!-- TODO: replace value inside ENC() with encrypted value of your db password -->
+			<ext:property name="jdbc.password" value="ENC(ZH6oCnQsGH2UUZ8yR8pDJA==)"/>
+		</ext:default-properties>
+	</ext:property-placeholder>
+
+	<enc:property-placeholder>
+		<enc:encryptor class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+			<property name="config">
+				<bean class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+					<property name="algorithm" value="PBEWithMD5AndTripleDES" />
+					<property name="passwordEnvName" value="ENC_PASSWD" />
+				</bean>
+			</property>
+		</enc:encryptor>
+	</enc:property-placeholder>
+
+	<!-- TODO: replace "com.mysql.jdbc.jdbc2.optional.MysqlDataSource" with property that defaults to mysql (current value) -->
+	<bean id="clientDatasource" class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
+		<!-- TODO: create and populate database named ${parent.artifactId} -->
+		<!-- TODO: replace "3306/mlrpg" with "3306/${parent.artifactId}" -->
+		<property name="url" value="jdbc:mysql://localhost:3306/mlrpg"/>
+		<!-- TODO: create and configure user ${parent.artifactId} -->
+		<!-- TODO: replace value="mlrpg" with value="${parent.artifactId}" -->
+		<property name="user" value="mlrpg"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+
+	<service interface="javax.sql.DataSource" ref="clientDatasource" >
+		<service-properties>
+			<!-- TODO: replace "jdbc/client/mlrpg" with "jdbc/client/${parent.artifactId}" -->
+			<entry key="osgi.jndi.service.name" value="jdbc/client/mlrpg"/>
+		</service-properties>
+	</service>
+
+</blueprint>

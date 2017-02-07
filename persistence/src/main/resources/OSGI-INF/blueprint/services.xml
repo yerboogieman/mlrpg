@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<blueprint xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.2.0"
+		xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+
+	<tx:enable-annotations/>
+
+	<reference id="mlrpgEntityManager"
+			   interface="javax.persistence.EntityManager"
+			   filter="(osgi.unit.name=mlrpg)"/>
+
+	<bean id="mlrpgJpaService" class="com.dollarquest.service.impl.jpa.FriendJpaService">
+		<property name="entityManager" ref="mlrpgEntityManager"/>
+	</bean>
+
+	<service ref="mlrpgJpaService" interface="com.dollarquest.service.FriendService"/>
+
+</blueprint>

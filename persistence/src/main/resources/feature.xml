@@ -1,0 +1,7 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="mlrpg-1.0">
+	<feature name="mlrpg" description="Friends Application Bundles" version="1.0-SNAPSHOT">
+		<bundle start-level="80">mvn:com.dollarquest/model/1.0-SNAPSHOT</bundle>
+		<bundle start-level="85">mvn:com.dollarquest/persistence/1.0-SNAPSHOT</bundle>
+		<bundle start-level="90">mvn:com.dollarquest/rest/1.0-SNAPSHOT</bundle>
+	</feature>
+</features>

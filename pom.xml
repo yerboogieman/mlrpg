@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.dollarquest</groupId>
+	<artifactId>mlrpg</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<customation.version>1.0-SNAPSHOT</customation.version>
+		<hibernate.version>4.3.6.Final</hibernate.version>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>3.2.0</version>
+					<extensions>true</extensions>
+					<inherited>true</inherited>
+					<configuration>
+						<instructions>
+							<Bundle-Name>${name}</Bundle-Name>
+							<Bundle-SymbolicName>com.dollarquest.${parent.artifactId}-mlrpg</Bundle-SymbolicName>
+							<Client-ID>${parent.artifactId}</Client-ID>
+							<Package-Prefix>com.dollarquest</Package-Prefix>
+						</instructions>
+						<finalName>${parent.artifactId}-mlrpg-1.0-SNAPSHOT</finalName>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+  <modules>
+    <module>model</module>
+    <module>persistence</module>
+    <module>rest</module>
+    <module>ui</module>
+  </modules>
+</project>

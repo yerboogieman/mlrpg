@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<b:blueprint xmlns:b="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+			 xmlns="http://customationsoftware.com/xmlns/rest-services">
+
+	<b:bean id="mlrpgRestService" class="com.dollarquest.rest.FriendsRestService">
+		<b:property name="friendService">
+			<b:reference interface="com.dollarquest.service.FriendService"/>
+		</b:property>
+	</b:bean>
+
+	<b:bean class="com.custsoft.cxf.RestServicesFactory"
+			factory-method="registerServices">
+		<b:argument value="mlrpg"/>
+		<b:argument>
+			<b:list>
+				<b:ref component-id="mlrpgRestService"/>
+			</b:list>
+		</b:argument>
+	</b:bean>
+	
+	<rest-services>
+		<auth-config>
+			<intercept-url url-pattern="/api/accounts/**" roles="ROLE_USER"/>
+			<intercept-url url-pattern="/api/clients/**" roles="ROLE_USER,ROLE_AUTHENTICATED_VISITOR"/>
+			<intercept-url url-pattern="/**" roles="ROLE_ADMIN"/>
+		</auth-config>
+	</rest-services>
+
+</b:blueprint>
