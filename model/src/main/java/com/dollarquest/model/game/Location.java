@@ -2,6 +2,7 @@ package com.dollarquest.model.game;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by eric on 6/22/16.
@@ -14,12 +15,16 @@ public class Location {
 
 	private Collection<Item> items;
 
-	private Collection<Location> destinations;
+	private Set<Location> destinations;
 
 	public Collection<Item> removeItems() {
 		final Collection<Item> itemsToTake = new ArrayList<Item>(items);
 		items.clear();
 		return itemsToTake;
+	}
+
+	public void leave() {
+
 	}
 
 	public String getName() {
@@ -46,11 +51,11 @@ public class Location {
 		this.items = items;
 	}
 
-	public Collection<Location> getDestinations() {
+	public Set<Location> getDestinations() {
 		return destinations;
 	}
 
-	public void setDestinations(Collection<Location> destinations) {
+	public void setDestinations(Set<Location> destinations) {
 		this.destinations = destinations;
 	}
 }

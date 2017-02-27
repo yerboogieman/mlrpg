@@ -1,12 +1,14 @@
 package com.dollarquest.model.game;
 
 /**
- * Created by eric on 6/22/16.
+ * Created by eric on 2/25/17.
  */
-public class Hero extends Being {
+public class Monster extends Being {
+
 
 	@Override
 	public void attack(Being being) {
 
 	}
+
 }
