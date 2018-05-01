@@ -1,6 +1,6 @@
 package com.dollarquest.model;
 
-import com.custsoft.model.Model;
+import com.custsoft.model.JpaModel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "mlrpg")
-public class Friend extends Model<Long> {
+public class Friend extends JpaModel<Long> {
 
 	@Column
 	private String name;

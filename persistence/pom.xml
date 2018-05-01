@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>mlrpg</artifactId>
 		<groupId>com.dollarquest</groupId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>persistence</artifactId>
@@ -12,27 +12,33 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.example</groupId>
+			<groupId>com.custsoft</groupId>
+			<artifactId>client</artifactId>
+			<version>${customation.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.custsoft</groupId>
 			<artifactId>model</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.custsoft</groupId>
-			<artifactId>customation-client</artifactId>
 			<version>${customation.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.custsoft</groupId>
-			<artifactId>customation-model</artifactId>
+			<artifactId>data</artifactId>
 			<version>${customation.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.custsoft</groupId>
-			<artifactId>customation-data</artifactId>
-			<version>${customation.version}</version>
+			<groupId>com.dollarquest</groupId>
+			<artifactId>model</artifactId>
+			<version>${mlrpg.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.aries.jpa</groupId>
+			<artifactId>org.apache.aries.jpa.api</artifactId>
+			<version>${aries.jpa.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

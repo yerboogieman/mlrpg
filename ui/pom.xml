@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>mlrpg</artifactId>
 		<groupId>com.dollarquest</groupId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<name>Friends UI</name>

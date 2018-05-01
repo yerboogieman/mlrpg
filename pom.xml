@@ -4,13 +4,32 @@
 
 	<groupId>com.dollarquest</groupId>
 	<artifactId>mlrpg</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<modules>
+		<module>model</module>
+		<module>persistence</module>
+		<module>rest</module>
+		<module>ui</module>
+	</modules>
+
 	<properties>
-		<customation.version>1.0-SNAPSHOT</customation.version>
+		<aries.jpa.version>2.6.1</aries.jpa.version>
+		<customation.version>1.0.0-SNAPSHOT</customation.version>
 		<hibernate.version>4.3.6.Final</hibernate.version>
+		<mlrpg.version>1.0.0-SNAPSHOT</mlrpg.version>
+		<scr.annotations.version>1.3.0</scr.annotations.version>
 	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.service.component.annotations</artifactId>
+			<version>${scr.annotations.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<pluginManagement>
@@ -18,27 +37,29 @@
 				<plugin>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>maven-bundle-plugin</artifactId>
-					<version>3.2.0</version>
+					<version>3.3.0</version>
 					<extensions>true</extensions>
 					<inherited>true</inherited>
 					<configuration>
 						<instructions>
 							<Bundle-Name>${name}</Bundle-Name>
-							<Bundle-SymbolicName>com.dollarquest.${parent.artifactId}-mlrpg</Bundle-SymbolicName>
-							<Client-ID>${parent.artifactId}</Client-ID>
-							<Package-Prefix>com.dollarquest</Package-Prefix>
+							<Bundle-SymbolicName>${project.parent.groupId}.${project.parent.artifactId}-${artifactId}</Bundle-SymbolicName>
+							<Client-ID>${project.parent.artifactId}</Client-ID>
+							<Package-Prefix>${project.parent.groupId}</Package-Prefix>
 						</instructions>
-						<finalName>${parent.artifactId}-mlrpg-1.0-SNAPSHOT</finalName>
+						<finalName>${project.parent.groupId}-${project.parent.artifactId}-${artifactId}-${version}</finalName>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.6.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
 
-  <modules>
-    <module>model</module>
-    <module>persistence</module>
-    <module>rest</module>
-    <module>ui</module>
-  </modules>
 </project>
